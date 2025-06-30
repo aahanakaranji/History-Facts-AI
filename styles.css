@@ -99,14 +99,15 @@ body {
 }
 
 .submit-button {
-  background: #7b4b2a;
+  background: #f5efe6;
   height: 3rem;
   width: 10rem;
   margin-top: 2rem;
-  color: #f5efe6;
+  font-weight: bold;
+  color: #7b4b2a;
 }
 .submit-button:hover {
-  background: #5f3920;
+  background: #d4af7f;
 }
 
 .scroll-text-container {
@@ -133,4 +134,10 @@ body {
   100% {
     left: -100%;
   }
+}
+
+.selected {
+  background-color: #d4af7f;
+  color: #3e2c1c;
+  border: 2px solid #7b4b2a;
 }
