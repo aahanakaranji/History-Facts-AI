@@ -24,16 +24,24 @@ areaButtons.forEach((button) => {
 const spawnButton = document.querySelector(".submit-button");
 const instructionWrapper = document.querySelector(".instruction-wrapper");
 
-spawnButton.addEventListener("click", () => {
+spawnButton.addEventListener("click", async () => {
   const selectedTime = document.querySelector(".time-button.selected");
   const selectedArea = document.querySelector(".area-button.selected");
 
   if (selectedTime && selectedArea) {
-    // Example history fact
-    const fact =
-      "Did you know? The Great Wall of China was built over centuries to protect against invasions.";
+    // Show loading message
+    instructionWrapper.innerHTML = `<p>Getting your history fact...</p>`;
 
-    // Show the fact in the instruction wrapper
-    instructionWrapper.innerHTML = `<p>${fact}</p>`;
+    const response = await fetch("http://localhost:3000/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        time: selectedTime.textContent.trim(),
+        area: selectedArea.textContent.trim(),
+      }),
+    });
+
+    const data = await response.json();
+    instructionWrapper.innerHTML = `<p>${data.response}</p>`;
   }
 });
